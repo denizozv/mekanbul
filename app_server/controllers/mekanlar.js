@@ -45,13 +45,13 @@ const mekanBilgisi = function (req, res) {
         "gunler":"pazartesi - cuma",
         "acilis":"9.00",
         "kapanis":"23.00",
-        "kapali":"false"
+        "kapali":false
       },
       {
         "gunler":"cumartesi - pazar",
         "acilis":"10.00",
         "kapanis":"23.00",
-        "kapali":"false"
+        "kapali":false
       }
       ],
       "imkanlar":["kahve","çay","kek"],
