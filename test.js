@@ -4,20 +4,20 @@ const request = require("supertest").agent(adres);
 describe("POST /api/mekanlar", function () {
   it("Yeni mekan ekle:", async function () {
     const response = await request.post("/api/mekanlar").send({
-      ad: "E9103",
-      adres: "SDU Bilgisayar Müh.",
-      puan: 0,
-      imkanlar: "kahve,çay,ders",
-      enlem: 37,
-      boylam: 35,
-      gunler1: "Pazratesi-Cuma",
+      ad: "Starbucks",
+      adres: "Centrum Garden",
+      puan: 5,
+      imkanlar: "çay,kahve,pasta",
+      enlem: 37.83226584629666,
+      boylam: 30.524732239878013,
+      gunler1: "Pazartesi-Cuma",
       acilis1: "9:00",
-      kapanis1: "17:00",
+      kapanis1: "23:00",
       kapali1: false,
       gunler2: "Cumartesi-Pazar",
       acilis2: "11:00",
-      kapanis2: "18:00",
-      kapali2: true,
+      kapanis2: "17:00",
+      kapali2: false,
     });
     expect(response.status).to.eql(201);
     process.env.mekanid = response.body._id;
@@ -43,20 +43,20 @@ describe("PUT /api/mekanlar/:mekanid", function () {
     const response = await request
       .put(`/api/mekanlar/${process.env.mekanid}`)
       .send({
-        ad: "Gloria Jeans 2",
-        adres: "SDU Batı Kampüsü",
+        ad: "Starbucks SDÜ",
+        adres: "SDÜ Doğu Kampüsü",
         puan: 3,
-        imkanlar: "Kahve,Çay,Kek",
-        enlem: 38,
-        boylam: 34,
-        gunler1: "pazartesi-cuma",
-        acilis1: "8:10",
+        imkanlar: "çay,kahve,pasta,refresher",
+        enlem: 37.8,
+        boylam: 30.5,
+        gunler1: "Pazartesi-Cuma",
+        acilis1: "9:10",
         kapanis1: "23:10",
         kapali1: true,
-        gunler2: "cumartesi",
-        acilis2: "10:30",
-        kapanis2: "17:30",
-        kapali2: false,
+        gunler2: "Cumartesi-Pazar",
+        acilis2: "11:10",
+        kapanis2: "17:10",
+        kapali2: true,
       });
     expect(response.status).to.eql(200);
   });
@@ -67,9 +67,9 @@ describe("POST /api/mekanlar/:mekanid/yorumlar", function () {
     const response = await request
       .post(`/api/mekanlar/${process.env.mekanid}/yorumlar`)
       .send({
-        yorumYapan: "DO",
-        puan: 1,
-        yorumMetni: "Kahveler berbat!",
+        yorumYapan: "ASY",
+        puan: 5,
+        yorumMetni: "Kahveler harika",
       });
     process.env.yorumid = response.body._id;
     expect(response.status).to.eql(201);
@@ -92,9 +92,9 @@ describe("PUT /api/mekanlar/:mekanid/yorumlar/:yorumid", function () {
         `/api/mekanlar/${process.env.mekanid}/yorumlar/${process.env.yorumid}`
       )
       .send({
-        yorumYapan: "Mehmet",
-        puan: 2,
-        yorumMetni: "Kahveler kötü",
+        yorumYapan: "Sinan",
+        puan: 4,
+        yorumMetni: "Kahveler harikaaaa",
       });
     expect(response.status).to.eql(200);
   });
